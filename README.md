@@ -153,14 +153,11 @@ Większość reguł jest warunkowa. Obiekt `condition` określa, kiedy reguła m
 *   **Lokalizacja:** `resources/`
 *   **Wymagania:** Pliki muszą być zakodowane w `UTF-8`.
 
-1.  **`CSIRE_Kody_CA_CE.csv`**
-    *   **Cel:** Zawiera listę kodów rezultatów (sukcesu i błędów) wraz z ich opisami. Używany przez mechanizm autouzupełniania w zakładce "Odpowiedzi".
-    *   **Wymagane kolumny:** `Code`, `Description`, `Type`.
-2.  **`CSIRE_Kody_EIC_Operatorow.csv`**
+1.  **`CSIRE_Kody_EIC_Operatorow.csv`**
     *   **Cel:** Zawiera listę kodów EIC operatorów. Używany przez generator danych do losowania realistycznych identyfikatorów.
     *   **Wymagane kolumny:** `EIC`, `Name`.
     *   **Separator:** średnik (`;`).
-3.  **`Zestawienie_walidacji_w_procesach_CSIRE.csv`**
+2.  **`Zestawienie_walidacji_w_procesach_CSIRE.csv`**
     *   **Cel:** Definiuje, które kody błędów (CE) są dozwolone w kontekście konkretnych procesów biznesowych. Używany przez generator `generate:error_code_for_process`.
     *   **Struktura:** Plik posiada specyficzny format. Dwie pierwsze linie są ignorowane. Wymagana jest kolumna `Kod błędu` oraz kolumny procesów w formacie `UNK X.Y.Z.A.`.
 

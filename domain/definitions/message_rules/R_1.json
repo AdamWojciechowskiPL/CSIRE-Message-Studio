@@ -1,0 +1,101 @@
+{
+    "comment": "Reguły i wartości dla komunikatu odpowiedzi R_1 (OperationResult)",
+    "rules": {
+        "OperationResult.Header.MessageId": {
+            "value": {
+                "action": "set_value",
+                "value": "generate:uuid"
+            }
+        },
+        "OperationResult.Payload.ProcessInstanceId": {
+            "value": {
+                "action": "set_value",
+                "value": "generate:uuid"
+            }
+        },
+        "OperationResult.Header.MessageType": {
+            "value": {
+                "action": "set_value",
+                "value": "R_1"
+            }
+        },
+        "OperationResult.Header.MessageTypeResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "x"
+            }
+        },
+        "OperationResult.Header.PhysicalSenderId": {
+            "value": {
+                "action": "set_value",
+                "value": "19VPL-348177312M"
+            }
+        },
+        "OperationResult.Header.PhysicalSenderIdResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "305"
+            }
+        },
+        "OperationResult.Header.JuridicalSenderId": {
+            "value": {
+                "action": "set_value",
+                "value": "19VPL-348177312M"
+            }
+        },
+        "OperationResult.Header.JuridicalSenderIdResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "305"
+            }
+        },
+        "OperationResult.Header.PhysicalRecipientId": {
+            "value": {
+                "action": "set_value",
+                "value": "config:PHYSICAL_RECIPIENT_ID"
+            }
+        },
+        "OperationResult.Header.PhysicalRecipientIdResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "305"
+            }
+        },
+        "OperationResult.Header.JuridicalRecipientId": {
+            "value": {
+                "action": "set_value",
+                "value": "config:JURIDICAL_RECIPIENT_ID"
+            }
+        },
+        "OperationResult.Header.JuridicalRecipientIdResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "305"
+            }
+        },
+        "OperationResult.ProcessEnergyContext.BusinessProcessResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "x"
+            }
+        },
+        "OperationResult.ProcessEnergyContext.SenderBusinessRoleIdentifier": {
+            "value": {
+                "action": "set_value",
+                "value": "CK0080"
+            }
+        },
+        "OperationResult.ProcessEnergyContext.SenderBusinessRoleResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "260"
+            }
+        },
+        "OperationResult.ProcessEnergyContext.IndustryClassificationId": {
+            "value": {
+                "action": "set_value",
+                "value": "23"
+            }
+        }
+    }
+}

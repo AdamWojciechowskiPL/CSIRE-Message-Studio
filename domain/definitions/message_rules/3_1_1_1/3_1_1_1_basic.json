@@ -1,0 +1,874 @@
+{
+    "comment": "Reguły i wartości dla komunikatu 3.1.1.1",
+    "rules": {
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary": {
+            "multiplicity": {
+                "action": "allow_multiple_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.HasMultipleEntities",
+                    "values": ["true"]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Header.MessageId": {
+            "value": { "action": "set_value", "value": "generate:uuid" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Header.SenderMessageId": {
+            "visibility": { "action": "hide" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Header.MessageType": {
+            "value": { "action": "set_value", "value": "3.1_1" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Header.MessageTypeResponsibleOrganization": {
+            "value": { "action": "set_value", "value": "x" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Header.PhysicalSenderId": {
+            "value": { "action": "set_value", "value": "19VPL-348177312M" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Header.PhysicalSenderIdResponsibleOrganization": {
+            "value": { "action": "set_value", "value": "305" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Header.JuridicalSenderId": {
+            "value": { "action": "set_value", "value": "19VPL-348177312M" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Header.JuridicalSenderIdResponsibleOrganization": {
+            "value": { "action": "set_value", "value": "305" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Header.PhysicalRecipientId": {
+            "value": { "action": "set_value", "value": "config:PHYSICAL_RECIPIENT_ID" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Header.PhysicalRecipientIdResponsibleOrganization": {
+            "value": { "action": "set_value", "value": "305" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Header.JuridicalRecipientId": {
+            "value": { "action": "set_value", "value": "config:JURIDICAL_RECIPIENT_ID" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Header.JuridicalRecipientIdResponsibleOrganization": {
+            "value": { "action": "set_value", "value": "305" }
+        },
+        "MeteringPointCharacteristicModificationNotification.ProcessEnergyContext.BusinessProcess": {
+            "value": { "action": "set_value", "value": "3.1." }
+        },
+        "MeteringPointCharacteristicModificationNotification.ProcessEnergyContext.BusinessProcessResponsibleOrganization": {
+            "value": { "action": "set_value", "value": "x" }
+        },
+        "MeteringPointCharacteristicModificationNotification.ProcessEnergyContext.SenderBusinessRoleIdentifier": {
+            "value": { "action": "set_value", "value": "CK0080" }
+        },
+        "MeteringPointCharacteristicModificationNotification.ProcessEnergyContext.SenderBusinessRoleResponsibleOrganization": {
+            "value": { "action": "set_value", "value": "260" }
+        },
+        "MeteringPointCharacteristicModificationNotification.ProcessEnergyContext.IndustryClassificationId": {
+            "value": { "action": "set_value", "value": "23" }
+        },
+        "MeteringPointCharacteristicModificationNotification.ProcessEnergyContext.BusinessProcessMessageType": {
+            "value": { "action": "set_value", "value": "3.1.1.1." }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeasurementAndBillingCircuitOwnership": {
+            "visibility": { "action": "hide" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType",
+                    "values": ["CK0314"]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.Miscellaneous.EffectiveDate": {
+            "data_generation": { "generator": "future_date", "params": { "days": 90 } }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MpApType": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType",
+                    "values": ["CK0314"]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MpOtherType": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType",
+                    "values": ["CK0313"]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.IsChildMp": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType",
+                    "values": ["CK0313"]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.ParentMeteringPointCode": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "operator": "AND",
+                    "conditions": [
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType", "values": ["CK0313"] },
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.IsChildMp", "values": ["true"] }
+                    ]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.IsMpPartOfFacility": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_edit_is_mp_part_of_facility" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Facility": {
+            "visibility": {
+                "action": "show_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.IsMpPartOfFacility",
+                    "values": ["true"]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_ExchangePoint": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType",
+                    "values": ["CK0316"]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Transformers": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_transformers_data" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Losses": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType", "values": ["CK0314", "CK0316", "CK0318"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType", "values": ["CK0313"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "operator": "OR",
+                    "conditions": [
+                         { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MpApType", "values": ["CK0026", "CK0028", "CK0029"] },
+                         { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.HasAdditionalEnergyCarriers", "values": ["true"] }
+                    ]
+                }
+            },
+            "visibility": {
+                "action": "show_if_value",
+                "condition": {
+                    "operator": "OR",
+                    "conditions": [
+                         { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MpApType", "values": ["CK0026", "CK0028", "CK0029"] },
+                         { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.HasAdditionalEnergyCarriers", "values": ["true"] }
+                    ]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.MeteringPointElectricityVoltageLevel": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType", "values": ["CK0314", "CK0316"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType", "values": ["CK0313", "CK0318"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.MeasuringSystemPhasesCount": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_edit_phases_count" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.MinContractedPower": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "operator": "AND",
+                    "conditions": [
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0060"] },
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MpApType", "values": ["CK0025", "CK0026", "CK0027", "CK0019"] },
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.ConnectionStatus", "values": ["E22", "E23"] }
+                    ]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.MaxContractedPower": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "operator": "AND",
+                    "conditions": [
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0060"] },
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MpApType", "values": ["CK0025", "CK0026", "CK0027", "CK0019"] },
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.ConnectionStatus", "values": ["E22", "E23"] }
+                    ]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.ConnectionGroup": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType", "values": ["CK0314"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.DateOfValidityOfTheConnectionConditions": {
+            "requirement": {
+                "action": "enable_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.ConnectionGroup", "values": ["CK0106"] }
+            },
+            "data_generation": { "generator": "past_date" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.ConnectionPower": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType", "values": ["CK0314"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.PlaceOfEnergySupply": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType", "values": ["CK0314", "CK0316"] }
+            },
+            "data_generation": { "generator": "business_sentence" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.DeviceOwnershipSeparationLocation": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType", "values": ["CK0314", "CK0316"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.PlaceOfInstallationOfMeteringAndBillingSystem": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0061"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0060"] }
+            },
+            "data_generation": { "generator": "business_sentence" }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Meter.MeasurementAndBillingCircuitType": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeasurementAndBillingCircuitOwnership.PrimaryMeterOwnership", "values": ["CK0945", "CK0946", "CK0947"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeasurementAndBillingCircuitOwnership.PrimaryMeterOwnership", "values": ["CK0948"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Meter.IsSmartMeterConnected": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Meter.MeasurementAndBillingCircuitType", "values": ["CK0201", "CK0202", "CK0203"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Meter.MeasurementAndBillingCircuitType", "values": ["CK0204", "CK0205"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Meter.MeterNumber": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeasurementAndBillingCircuitOwnership.PrimaryMeterOwnership", "values": ["CK0945", "CK0946", "CK0947"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeasurementAndBillingCircuitOwnership.PrimaryMeterOwnership", "values": ["CK0948"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Meter.MeteringSystemAdjustmentStatus": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType", "values": ["CK0314"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointType", "values": ["CK0313", "CK0316", "CK0318"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EeqValidator.EeqValidatorIdentifier": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EeqValidator.EeqValidatorType",
+                    "values": [
+                        "CK0330",
+                        "CK0331"
+                    ]
+                }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EeqValidator.EeqValidatorType",
+                    "values": [
+                        "CK0332"
+                    ]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Losses.EnergyLossCategory": {
+             "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Losses.EnergyLossType", "values": ["CK1115", "CK1116", "CK1117", "CK1118"] }
+            },
+             "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Losses.EnergyLossType", "values": ["CK1119"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Losses.TechnicalData_PercentLosses": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "operator": "AND",
+                    "conditions": [
+                         { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Losses.EnergyLossType", "values": ["CK1115", "CK1116", "CK1117", "CK1118"] },
+                         { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Losses.EnergyLossCategory", "values": ["CK0900", "CK0901"] }
+                    ]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Losses.TechnicalData_MeterLosses": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "operator": "AND",
+                    "conditions": [
+                         { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Losses.EnergyLossType", "values": ["CK1115", "CK1116", "CK1117", "CK1118"] },
+                         { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Losses.EnergyLossCategory", "values": ["CK0902", "CK0903"] }
+                    ]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Losses.TechnicalData_IdleModeLosses": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_Losses.EnergyLossType", "values": ["CK1118"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.HasCogeneration": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.EnergyCarrierType", "values": ["CK0270", "CK0271", "CK0272"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.DateOfFirstIntroductionOfEnergyFromMicroInstallations": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { 
+                    "operator": "AND",
+                    "conditions": [
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.EnergyCarrierType", "values": ["CK0277", "CK0278", "CK0279", "CK0280", "CK0281", "CK0282", "CK0283", "CK0284", "CK0285", "CK0286"] },
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.CarrierInstalledPower", "operator": "<=", "value": 50 }
+                    ]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.StorageNominalCapacity": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.EnergyCarrierType", "values": ["CK0287", "CK0288", "CK0289", "CK0290"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.StorageNominalEfficiency": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.EnergyCarrierType", "values": ["CK0287", "CK0288", "CK0289", "CK0290"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.EnergyStorageMaxChargePower": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.EnergyCarrierType", "values": ["CK0287", "CK0288", "CK0289", "CK0290"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.EnergyStorageMaxDischargePower": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.TechnicalData_Basic.TechnicalData_EnergyCarriers.EnergyCarrierType", "values": ["CK0287", "CK0288", "CK0289", "CK0290"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.IsEndBuyer": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_edit_is_end_buyer" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.IsEndUser": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_edit_is_end_user" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_Address": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_kse_user_address" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_MailingAddress": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_kse_user_mailing_address" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_Address.IsStreetTerytCodeAvailable": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_Address.IsStreetSeparationPresent", "values": ["true"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_Address.IsStreetSeparationPresent", "values": ["false"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_Address.Teryt": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "operator": "AND",
+                    "conditions": [
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_Address.Country", "values": ["PL"] },
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_Address.IsStreetTerytCodeAvailable", "values": ["true"] }
+                    ]
+                }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_Address.IsStreetTerytCodeAvailable", "values": ["false"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_MailingAddress.IsStreetTerytCodeAvailable": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_MailingAddress.IsStreetSeparationPresent", "values": ["true"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_MailingAddress.IsStreetSeparationPresent", "values": ["false"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_MailingAddress.Teryt": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "operator": "AND",
+                    "conditions": [
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_MailingAddress.Country", "values": ["PL"] },
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_MailingAddress.IsStreetTerytCodeAvailable", "values": ["true"] }
+                    ]
+                }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Basic.KseUserData_MailingAddress.IsStreetTerytCodeAvailable", "values": ["false"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.FirstName":{
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserType", "values": ["CK0801", "CK0804", "CK0807"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.LastName":{
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserType", "values": ["CK0801", "CK0804", "CK0807"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.CompanyName":{
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserType", "values": ["CK0802","CK0803", "CK0805", "CK0806"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserData_Identifiers.Pesel":{
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserType", "values": ["CK0801"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserData_Identifiers.Nip":{
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserType", "values": ["CK0802", "CK0803", "CK0806"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserData_Identifiers.Krs":{
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserType", "values": ["CK0803"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserData_Identifiers.IdentifierType":{
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserType", "values": ["CK0804", "CK0807"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserData_Identifiers.CustomKseUserIdentifier":{
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserType", "values": ["CK0804", "CK0807"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserData_Identifiers.GlobalTaxIdentification":{
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserType", "values": ["CK0805"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Address.StreetName": {
+            "requirement": {
+                "action": "enable_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Address.IsStreetSeparationPresent",
+                    "values": ["true"]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Address.BuildingNumber": {
+            "requirement": {
+                "action": "enable_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Address.IsStreetSeparationPresent",
+                    "values": ["true"]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Address.ApartmentNumber": {
+            "requirement": {
+                "action": "enable_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Address.IsStreetSeparationPresent",
+                    "values": ["true"]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Address.Teryt": {
+            "requirement": {
+                "action": "enable_if_value",
+                "condition": {
+                    "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Address.IsStreetTerytCodeAvailable",
+                    "values": ["true"]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Operators.SupplierIdentifier": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                     "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.TradeAgreementStatus", 
+                     "values": ["CK0951", "CK0952", "CK0953", "CK0954", "CK0955"] 
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Operators.BalanceResponsiblePartyIdentifier": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                     "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.TradeAgreementStatus", 
+                     "values": ["CK0951", "CK0952", "CK0953", "CK0954", "CK0955", "CK0957"] 
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.EnergyConsumptionType": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MpApType", "values": ["CK0025", "CK0026", "CK0027"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.EstimatedAnnualVolume": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0060"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0061"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.ReadingSchedule": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_reading_schedule" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.NetworkAgreementType": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_network_agreement_type" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.TradeAgreementStatus": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.NetworkAgreementType", "values": ["CK0001", "CK0003", "CK0004"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.NetworkAgreementType", "values": ["CK0019"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.HasThreatToLifeHealthAndEnvironment": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_edit_threat_to_life" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.HasOperatorRequestedSuspension": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_edit_operator_suspension" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.HasSupplierRequestedSuspension": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_edit_supplier_suspension" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.HasOperatorRequestedDeactivation": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_edit_operator_deactivation" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.HasSupplierRequestedDeactivation": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_edit_supplier_deactivation" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BillingMethodForMicroInstallation": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_billing_method_micro" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.HasConsumptionProfileConsent": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": {
+                    "operator": "AND",
+                    "conditions": [
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.TradeAgreementStatus", "not_values": ["CK0956"] },
+                        { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.KseUserData_Primary.KseUserType", "values": ["CK0801", "CK0802", "CK0804", "CK0807"] }
+                    ]
+                }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_DistributionAgreement": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.NetworkAgreementType", "values": ["CK0001", "CK0004"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.NetworkAgreementType", "values": ["CK0019", "CK0003"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_SupplyAgreement": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.NetworkAgreementType", "values": ["CK0003"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_ComplexAgreement": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.TradeAgreementStatus", "values": ["CK0953", "CK0954", "CK0955"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_SupplyAndComplexAgreement": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.TradeAgreementStatus", "values": ["CK0951", "CK0953"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.TariffGroup": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_tariff_group" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.ContractedPower": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0060"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0061"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.StandardConsumptionProfile": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0060"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0061"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.HasSpecificServiceConditions": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_edit_specific_service_conditions" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.SpecificTermsOfService": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.HasSpecificServiceConditions", "values": ["true"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.PlannedOneOffInterruption": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0060"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0061"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.UnplannedOneOffInterruption": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_unplanned_one_off_interruption" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.SumOfPlannedInterruptionsDuringTheYear": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0060"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.MeteringPointData_Basic.MeteringPointData_Area.MeteringGridAreaType", "values": ["CK0061"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.SumOfUnplannedInterruptionsDuringTheYear": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_sum_of_unplanned_interruptions" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.HasExcessPowerBilling": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_excess_power_billing" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.HasExcessReactivePowerBilling": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_excess_reactive_power_billing" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.TgPhiQ1": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.HasExcessReactivePowerBilling", "values": ["true"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.TgPhiQ2": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.HasExcessReactivePowerBilling", "values": ["true"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.TgPhiQ3": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.HasExcessReactivePowerBilling", "values": ["true"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.TgPhiQ4": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_TermsOfService.HasExcessReactivePowerBilling", "values": ["true"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_DistributionAgreement.ExpectedEndDate": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_DistributionAgreement.EndDateType", "values": ["CK0162"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_DistributionAgreement.EndDateType", "values": ["CK0161"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_SupplyAgreement.SupplierBillingPeriod": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_supplier_billing_period_supply" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_SupplyAgreement.ExpectedEndDate": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_SupplyAgreement.EndDateType", "values": ["CK0162"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_SupplyAgreement.EndDateType", "values": ["CK0161"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_ComplexAgreement.ExpectedEndDate": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_ComplexAgreement.EndDateType", "values": ["CK0162"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_ComplexAgreement.EndDateType", "values": ["CK0161"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_ComplexAgreement.SupplierBillingPeriod": {
+            "visibility": {
+                "action": "show_if_permission",
+                "condition": { "permission_key": "can_view_supplier_billing_period_complex" }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_SupplyAndComplexAgreement.ExpectedEndDate": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_SupplyAndComplexAgreement.EndDateType", "values": ["CK0162"] }
+            }
+        },
+        "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_SupplyAndComplexAgreement.ReportedSupplierAgreementTerminationDate": {
+            "requirement": {
+                "action": "require_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_SupplyAndComplexAgreement.EndDateType", "values": ["CK0162"] }
+            },
+            "visibility": {
+                "action": "forbid_if_value",
+                "condition": { "field_path": "MeteringPointCharacteristicModificationNotification.Payload.BusinessData_Basic.BusinessData_SupplyAndComplexAgreement.EndDateType", "values": ["CK0161"] }
+            }
+        }
+    }
+}

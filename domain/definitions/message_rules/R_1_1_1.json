@@ -1,0 +1,198 @@
+{
+    "comment": "Dedykowane reguły dla odpowiedzi na proces 2.1. (Zgłoszenie zmiany Sprzedawcy). Dziedziczy z R_1.json i dodaje specyficzną logikę.",
+    "rules": {
+        "OperationResult.Header.MessageId": {
+            "value": {
+                "action": "set_value",
+                "value": "generate:uuid"
+            }
+        },
+        "OperationResult.Payload.Result.ProcessInstanceId": {
+            "value": {
+                "action": "set_value",
+                "value": "generate:uuid"
+            }
+        },
+        "OperationResult.Header.MessageType": {
+            "value": {
+                "action": "set_value",
+                "value": "R_1"
+            }
+        },
+        "OperationResult.Header.MessageTypeResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "x"
+            }
+        },
+        "OperationResult.Header.PhysicalSenderId": {
+            "value": {
+                "action": "set_value",
+                "value": "19VPL-348177312M"
+            }
+        },
+        "OperationResult.Header.PhysicalSenderIdResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "305"
+            }
+        },
+        "OperationResult.Header.JuridicalSenderId": {
+            "value": {
+                "action": "set_value",
+                "value": "19VPL-348177312M"
+            }
+        },
+        "OperationResult.Header.JuridicalSenderIdResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "305"
+            }
+        },
+        "OperationResult.Header.PhysicalRecipientId": {
+            "value": {
+                "action": "set_value",
+                "value": "config:PHYSICAL_RECIPIENT_ID"
+            }
+        },
+        "OperationResult.Header.PhysicalRecipientIdResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "305"
+            }
+        },
+        "OperationResult.Header.JuridicalRecipientId": {
+            "value": {
+                "action": "set_value",
+                "value": "config:JURIDICAL_RECIPIENT_ID"
+            }
+        },
+        "OperationResult.Header.JuridicalRecipientIdResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "305"
+            }
+        },
+        "OperationResult.ProcessEnergyContext.BusinessProcessResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "x"
+            }
+        },
+        "OperationResult.ProcessEnergyContext.SenderBusinessRoleIdentifier": {
+            "value": {
+                "action": "set_value",
+                "value": "CK0080"
+            }
+        },
+        "OperationResult.ProcessEnergyContext.SenderBusinessRoleResponsibleOrganization": {
+            "value": {
+                "action": "set_value",
+                "value": "260"
+            }
+        },
+        "OperationResult.ProcessEnergyContext.IndustryClassificationId": {
+            "value": {
+                "action": "set_value",
+                "value": "23"
+            }
+        },
+        "OperationResult.ProcessEnergyContext.BusinessProcessMessageType": {
+            "filter_for_process_2_1": {
+                "action": "filter_values",
+                "condition": {
+                    "field_path": "OperationResult.ProcessEnergyContext.BusinessProcess",
+                    "values": [
+                        "1.1."
+                    ]
+                },
+                "values": [
+                    "1.1.1.2.",
+                    "1.1.1.3.",
+                    "1.1.1.4."
+                ]
+            }
+        },
+        "OperationResult.Payload.FacilityData_Basic": {
+             "visibility": { "action": "hide" }
+        },
+        "OperationResult.ProcessEnergyContext.RetroactiveExecutionToken": {
+            "visibility": {
+                "action": "hide"
+            }
+        },
+        "OperationResult.Payload.Result.ResultCode": {
+            "set_success_on_1_1_1_2": {
+                "action": "set_value",
+                "condition": {
+                    "field_path": "OperationResult.ProcessEnergyContext.BusinessProcessMessageType",
+                    "values": ["1.1.1.2."]
+                },
+                "value": "CA0001"
+            },
+            "set_success_on_1_1_1_4": {
+                "action": "set_value",
+                "condition": {
+                    "field_path": "OperationResult.ProcessEnergyContext.BusinessProcessMessageType",
+                    "values": ["1.1.1.4."]
+                },
+                "value": "CA0001"
+            },
+            "generate_error_on_1_1_1_3": {
+                "action": "set_value",
+                "condition": {
+                    "field_path": "OperationResult.ProcessEnergyContext.BusinessProcessMessageType",
+                    "values": ["1.1.1.3."]
+                },
+                "value": "generate:error_code_for_process:1.1.1.1."
+            }
+        },
+        "OperationResult.Payload.Result.PriorityMatrixScenario": {
+            "require_if_ce199": {
+                "action": "require_if_value",
+                "condition": {
+                    "field_path": "OperationResult.Payload.Result.ResultCode",
+                    "values": [
+                        "CE199"
+                    ]
+                }
+            }
+        },
+        "OperationResult.Payload.Result.ResultDescription": {
+            "data_generation": {
+                "generator": "business_sentence",
+                "probability": 0.75
+            },
+            "hide_on_success": {
+                "action": "forbid_if_value",
+                "condition": {
+                    "field_path": "OperationResult.Payload.Result.ResultCode",
+                    "values": [
+                        "CA0001"
+                    ]
+                }
+            }
+        },
+        "OperationResult.Header.SenderMessageId": {
+            "import_mapping": {
+                "action": "set_value_from_import",
+                "source_path": "message_id",
+                "lock_field": true
+            }
+        },
+        "OperationResult.ProcessEnergyContext.BusinessProcess": {
+            "import_mapping": {
+                "action": "set_value_from_import",
+                "source_path": "business_process",
+                "lock_field": true
+            }
+        },
+        "OperationResult.Payload.MeteringPointData_Basic.MeteringPointCode": {
+            "import_mapping": {
+                "action": "set_value_from_import",
+                "source_path": "metering_point_code",
+                "lock_field": true
+            }
+        }
+    }
+}

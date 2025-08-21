@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bdt="urn:pl:oire:businessDataTypes:v1" xmlns:tech="urn:pl:oire:technical:v1" elementFormDefault="qualified" targetNamespace="urn:pl:oire:technical:v1">
+    
+    <!-- ====================================================================================================================================================== -->
+    <!-- ==== Wersja przedprodukcyjna z 16.12.2024                                                                                                         ==== -->
+    <!-- ====================================================================================================================================================== -->
+    
+    <!-- ====================================================================================================================================================== -->
+    <!-- ==== Import                                                                                                                                       ==== -->
+    <!-- ====================================================================================================================================================== -->
+    <xs:import namespace="urn:pl:oire:businessDataTypes:v1" schemaLocation="businessDataTypes.xsd"/>
+    
+    <!-- ====================================================================================================================================================== -->
+    <!-- ==== Kontekst                                                                                                                                     ==== -->
+    <!-- ====================================================================================================================================================== -->
+    <xs:element name="ProcessEnergyContext" type="tech:ProcessEnergyContext"/>
+    <xs:complexType name="ProcessEnergyContext">
+        <xs:annotation>
+            <xs:appinfo>
+                <tech:plName>Kontekst</tech:plName>
+                <tech:code>PL-715</tech:code>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <!-- Kod typu procesu biznesowego -->
+            <xs:element name="BusinessProcess" type="bdt:BusinessProcessType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>Kod typu procesu biznesowego</tech:plName>
+                        <tech:code>PL-716</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod procesu, którego dotyczy komunikat.</xs:documentation>
+                    <xs:documentation xml:lang="en">Code of the process affected by the message.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Identyfikacja agencji utrzymującej listę kodów procesów -->
+            <xs:element name="BusinessProcessResponsibleOrganization" type="bdt:AgencyCodeType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>Identyfikacja agencji utrzymującej listę kodów procesów</tech:plName>
+                        <tech:code>PL-720</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod identyfikujący organizację wydającą identyfikatory procesów. Organizacją wydającą identyfikatory procesów jest OIRE.</xs:documentation>
+                    <xs:documentation xml:lang="en">Code identifying the organization issuing process identifiers. Organization responsible for process identifiers is OIRE.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- ID_biznesowa_rola_nadawcy -->
+            <xs:element name="SenderBusinessRoleIdentifier" type="bdt:SenderRoleType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>ID_biznesowa_rola_nadawcy</tech:plName>
+                        <tech:code>PL-717</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Rola pełniona przez nadawcę, zgodna z Harmonised Electricity Market Role Model.</xs:documentation>
+                    <xs:documentation xml:lang="en">The role performed by the sender, according to the Harmonised Electricity Market Role Model.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Identyfikator organizacji kodującej role biznesowe -->
+            <xs:element name="SenderBusinessRoleResponsibleOrganization" type="bdt:AgencyCodeType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>Identyfikator organizacji kodującej role biznesowe</tech:plName>
+                        <tech:code>PL-721</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Identyfikacja agencji utrzymującej listę kodów ról biznesowych. Organizacją utrzymującą listę kodów ról biznesowych jest ebIX.</xs:documentation>
+                    <xs:documentation xml:lang="en">Identification of the agency maintaining the list of business role codes. Organization responsible for business role codes is ebIX.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- ID_klasyfikacji_branżowej -->
+            <xs:element name="IndustryClassificationId" type="bdt:IndustryClassificationIdType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>ID_klasyfikacji_branżowej</tech:plName>
+                        <tech:code>PL-718</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod identyfikujący branżę energetyczną , wg ebiX, ref: https://mwgstorage1.blob.core.windows.net/public/Ebix/ebIX%20code%20list%20v1r0A%2020190618.pdf</xs:documentation>
+                    <xs:documentation xml:lang="en">Code identifying the energy industry , according to ebiX, ref: https://mwgstorage1.blob.core.windows.net/public/Ebix/ebIX%20code%20list%20v1r0A%2020190618.pdf</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Typ dokumentu -->
+            <xs:element name="BusinessProcessMessageType" type="bdt:BusinessProcessMessageType_Type" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>Typ dokumentu</tech:plName>
+                        <tech:code>PL-719</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod identyfikujący numer unikatowego komunikatu, zgodny z numeracją UNK w zakładce Lista komunikatów.</xs:documentation>
+                    <xs:documentation xml:lang="en">Code identifying the unique message number, in accordance with the UNK numbering in the Message List tab.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Token daty wstecznej -->
+            <xs:element name="RetroactiveExecutionToken" type="bdt:TokenType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>Token daty wstecznej</tech:plName>
+                        <tech:code>PL-722</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Klucz wygenerowany przez OIRE umożliwiający przekazanie komunikatu poza dopuszczalnymi bramkami czasowymi.</xs:documentation>
+                    <xs:documentation xml:lang="en">A key generated by the OIRE that allows the message to be transmitted outside the allowed time gates.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- ====================================================================================================================================================== -->
+    <!-- ==== Nagłówek                                                                                                                                     ==== -->
+    <!-- ====================================================================================================================================================== -->
+    <xs:element name="Header" type="tech:Header"/>
+    <xs:complexType name="Header">
+        <xs:annotation>
+            <xs:appinfo>
+                <tech:plName>Nagłówek</tech:plName>
+                <tech:code>PL-700</tech:code>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <!-- ID_Komunikatu -->
+            <xs:element name="MessageId" type="bdt:UuidType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>ID_Komunikatu</tech:plName>
+                        <tech:code>PL-701</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">UUID nadawany przez system nadawcy.</xs:documentation>
+                    <xs:documentation xml:lang="en">UUID assigned by the sender's system.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- ID_komunikatu_nadawcy -->
+            <xs:element name="SenderMessageId" type="bdt:UuidType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>ID_komunikatu_nadawcy</tech:plName>
+                        <tech:code>PL-235</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">UUID komunikatu, dla którego udostępniana jest odpowiedź. Pusty, jeżeli komunikat nie jest odpowiedzią.</xs:documentation>
+                    <xs:documentation xml:lang="en">UUID of the message for which this is a response. Empty for initial requests</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Kod typu komunikatu -->
+            <xs:element name="MessageType" type="bdt:MessagePayloadType_Type" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>Kod typu komunikatu</tech:plName>
+                        <tech:code>PL-702</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Typ wysyłanego komunikatu.</xs:documentation>
+                    <xs:documentation xml:lang="en">Type of message to be sent.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Identyfikator podmiotu kodującego typy komunikatu -->
+            <xs:element name="MessageTypeResponsibleOrganization" type="bdt:AgencyCodeType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>Identyfikator podmiotu kodującego typy komunikatu</tech:plName>
+                        <tech:code>PL-703</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Identyfikacja podmiotu utrzymującego listę kodów typów wiadomości. Podmiotem utrzymującym listę kodów jest OIRE.</xs:documentation>
+                    <xs:documentation xml:lang="en">Identification of the entity maintaining the list of message type codes. Entity responsible for message types codes is OIRE.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Data i czas utworzenia -->
+            <xs:element name="MessageTimestamp" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>Data i czas utworzenia</tech:plName>
+                        <tech:code>PL-704</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Data i godzina utworzenia komunikatu.</xs:documentation>
+                    <xs:documentation xml:lang="en">Date and time when the message was created.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- ID_Fizycznego_nadawcy -->
+            <xs:element name="PhysicalSenderId" type="bdt:EicIdentifierType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>ID_Fizycznego_nadawcy</tech:plName>
+                        <tech:code>PL-705</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod EIC fizycznego nadawcy komunikatu.</xs:documentation>
+                    <xs:documentation xml:lang="en">EIC identifier of the physical sender of the message.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Identyfikator organizacji kodującej ID_Fizycznego_nadawcy -->
+            <xs:element name="PhysicalSenderIdResponsibleOrganization" type="bdt:AgencyCodeType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>Identyfikator organizacji kodującej ID_Fizycznego_nadawcy</tech:plName>
+                        <tech:code>PL-709</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod identyfikujący organizację wydającą identyfikator używany przez Fizycznego nadawcę. Podmiotem wydającym identyfikator jest ENTSO-E oraz lokalne biuro kodów EIC.</xs:documentation>
+                    <xs:documentation xml:lang="en">Code identifying the organization issuing the identifier used by the Physical Sender. Organizations responsible for this identifier are ENTSO-E and local EIC code department.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- ID_Prawnego_nadawcy -->
+            <xs:element name="JuridicalSenderId" type="bdt:EicIdentifierType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>ID_Prawnego_nadawcy</tech:plName>
+                        <tech:code>PL-706</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod EIC prawnego nadawcy komunikatu.</xs:documentation>
+                    <xs:documentation xml:lang="en">EIC identifier of the legal sender of the message.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Identyfikator organizacji kodującej ID_Prawnego_nadawcy -->
+            <xs:element name="JuridicalSenderIdResponsibleOrganization" type="bdt:AgencyCodeType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>Identyfikator organizacji kodującej ID_Prawnego_nadawcy</tech:plName>
+                        <tech:code>PL-709</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod identyfikujący organizację wydającą identyfikator używany przez Prawnego nadawcę. Podmiotem wydającym identyfikator jest ENTSO-E oraz lokalne biuro kodów EIC.</xs:documentation>
+                    <xs:documentation xml:lang="en">Code identifying the organization issuing the identifier used by the Legal sender. Organizations responsible for this identifier are ENTSO-E and local EIC code department.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- ID_Fizycznego_odbiorcy -->
+            <xs:element name="PhysicalRecipientId" type="bdt:EicIdentifierType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>ID_Fizycznego_odbiorcy</tech:plName>
+                        <tech:code>PL-707</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod EIC fizycznego odbiorcy komunikatu. W przypadku przekazywania komunikatu do CSIRE, id odbiorcy = id OIRE.</xs:documentation>
+                    <xs:documentation xml:lang="en">The EIC identifier of the physical recipient of the message. When forwarding a message to CSIRE, the id of the recipient = id of OIRE.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Identyfikator organizacji kodującej ID_Fizycznego_odbiorcy -->
+            <xs:element name="PhysicalRecipientIdResponsibleOrganization" type="bdt:AgencyCodeType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>Identyfikator organizacji kodującej ID_Fizycznego_odbiorcy</tech:plName>
+                        <tech:code>PL-709</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod identyfikujący organizację wydającą identyfikator używany przez Fizycznego odbiorcę. Podmiotem wydającym identyfikator jest ENTSO-E oraz lokalne biuro kodów EIC.</xs:documentation>
+                    <xs:documentation xml:lang="en">Code identifying the organization issuing the identifier used by the Physical Receiver. Organizations responsible for this identifier are ENTSO-E and local EIC code department.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- ID_Prawnego_odbiorcy -->
+            <xs:element name="JuridicalRecipientId" type="bdt:EicIdentifierType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>ID_Prawnego_odbiorcy</tech:plName>
+                        <tech:code>PL-708</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod EIC prawnego odbiorcy komunikatu. W przypadku przekazywania komunikatu do CSIRE, id odbiorcy = id OIRE.</xs:documentation>
+                    <xs:documentation xml:lang="en">EIC id of the legal recipient of the message. In the case of transmission of a message to CSIRE, id of recipient = id of OIRE.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Identyfikator organizacji kodującej ID_Prawnego_odbiorcy -->
+            <xs:element name="JuridicalRecipientIdResponsibleOrganization" type="bdt:AgencyCodeType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <tech:plName>Identyfikator organizacji kodującej ID_Prawnego_odbiorcy</tech:plName>
+                        <tech:code>PL-709</tech:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod identyfikujący organizację wydającą identyfikator używany przez Prawnego odbiorcę. Podmiotem wydającym identyfikator jest ENTSO-E oraz lokalne biuro kodów EIC.</xs:documentation>
+                    <xs:documentation xml:lang="en">Code identifying the organization issuing the identifier used by the Legal Recipient. Organizations responsible for this identifier are ENTSO-E and local EIC code department.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

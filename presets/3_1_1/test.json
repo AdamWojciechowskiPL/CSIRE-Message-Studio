@@ -1,0 +1,155 @@
+{
+    "name": "test",
+    "data": {
+        "Header": {
+            "MessageId": "c96ec2aa-9ddd-4c18-b39a-72c0fffa3609",
+            "SenderMessageId": "cedbd654-2447-4f7d-a3ff-404c9c8ad347",
+            "MessageType": "3.1_1",
+            "MessageTypeResponsibleOrganization": "x",
+            "PhysicalSenderId": "19VPL-348177312M",
+            "PhysicalSenderIdResponsibleOrganization": "305",
+            "JuridicalSenderId": "19VPL-348177312M",
+            "JuridicalSenderIdResponsibleOrganization": "305",
+            "PhysicalRecipientId": "19XEKOVOLTIS-PLX",
+            "PhysicalRecipientIdResponsibleOrganization": "305",
+            "JuridicalRecipientId": "19XEKOVOLTIS-PLX",
+            "JuridicalRecipientIdResponsibleOrganization": "305"
+        },
+        "ProcessEnergyContext": {
+            "BusinessProcess": "3.1.",
+            "BusinessProcessResponsibleOrganization": "x",
+            "SenderBusinessRoleIdentifier": "CK0080",
+            "SenderBusinessRoleResponsibleOrganization": "260",
+            "IndustryClassificationId": "23",
+            "BusinessProcessMessageType": "3.1.1.1.",
+            "RetroactiveExecutionToken": "lj"
+        },
+        "Payload": {
+            "Miscellaneous": {
+                "ProcessInstanceId": "7a38d097-1588-4def-b33e-c289c7781f63",
+                "EffectiveDate": "2025-10-05"
+            },
+            "MeteringPointData_Basic": {
+                "MeteringPointCode": "590243856287817706",
+                "MeteringPointType": "CK0316",
+                "IsMpPartOfFacility": "true",
+                "MeteringPointData_Facility": [
+                    {
+                        "FacilityType": "CK0256",
+                        "FacilityIdentifier": "773TV97EBHH9PP8KOP79410285"
+                    }
+                ],
+                "MeteringPointData_Address": {
+                    "Country": "PL",
+                    "CityName": "Pszczyna",
+                    "IsStreetSeparationPresent": "true",
+                    "IsStreetTerytCodeAvailable": "true",
+                    "PostalCode": "39-890",
+                    "StreetName": "Konwaliowa",
+                    "BuildingNumber": "33/11",
+                    "ApartmentNumber": "148",
+                    "Teryt": "37256"
+                },
+                "MeteringPointData_Area": {
+                    "MeteringGridAreaType": "CK0060",
+                    "MeteringGridAreaCode": "656"
+                },
+                "MeteringPointData_ExchangePoint": {
+                    "Operator2Identifier": "63BD01VQXPM93HYC",
+                    "MeteringGridAreaCode2": "1016"
+                }
+            },
+            "MeteringPointData_Operators": {
+                "OperatorIdentifier": "19XPL00000GONAR9"
+            },
+            "TechnicalData_Basic": {
+                "ConnectionStatus": "CK0935",
+                "PhysicalStatus": "CK0069",
+                "CanBeSuspendedForDebtCollection": "false",
+                "MeteringPointElectricityVoltageLevel": "E03",
+                "MeasuringSystemPhasesCount": "CK0926",
+                "PlaceOfEnergySupply": "Synthesize scalable paradigms.",
+                "DeviceOwnershipSeparationLocation": "mxu9o0y5mwbs5ub175722jqehnuj40a980wjl73lewha7aj6prfw8mvv2bxj3bnbbymvflzrkq",
+                "PowerReliabilityFactor": "2.27",
+                "FuseSize": "1493",
+                "HasAdditionalEnergyCarriers": "false",
+                "TechnicalData_Meter": {
+                    "MeasurementAndBillingCircuitType": "CK0202",
+                    "IsSmartMeterConnected": "true",
+                    "MeterNumber": "izx3i55h3yoq83x1",
+                    "MeasurementMethod": "CK0050",
+                    "MeteringSystemInstallationVoltageLevel": "E06",
+                    "MeterData_Registers": [
+                        {
+                            "RegisterType": "O8382"
+                        }
+                    ],
+                    "MeterData_ProductType": [
+                        {
+                            "ProductType": "CK1151"
+                        }
+                    ]
+                },
+                "TechnicalData_EeqValidator": {
+                    "EeqValidatorType": "CK0330",
+                    "EeqValidatorIdentifier": "mmspot5xa3fcy3iac15"
+                },
+                "TechnicalData_Transformers": {
+                    "CurrentTransformerRatio": "b8v1g34d7nicwf",
+                    "VoltageTransformerRatio": "dhft974wseqercd21ph9",
+                    "TransformerMultiplicationFactor": "38927290"
+                },
+                "TechnicalData_Losses": [
+                    {
+                        "EnergyLossType": "CK1118",
+                        "EnergyLossCategory": "CK0904",
+                        "TechnicalData_IdleModeLosses": {
+                            "IdleLossValue": "-1233945.38"
+                        }
+                    }
+                ]
+            },
+            "KseUserData_Basic": {
+                "IsEndBuyer": "true",
+                "IsEndUser": "false",
+                "HasMultipleEntities": "false",
+                "KseUserData_Address": {
+                    "Country": "PL",
+                    "CityName": "Iława",
+                    "IsStreetSeparationPresent": "true",
+                    "IsStreetTerytCodeAvailable": "false",
+                    "PostalCode": "79-757",
+                    "StreetName": "Skłodowskiej-Curie",
+                    "BuildingNumber": "190",
+                    "ApartmentNumber": "77"
+                },
+                "KseUserData_MailingAddress": {
+                    "RecipientName": "Wiktor Ryndak",
+                    "Country": "PL",
+                    "CityName": "Świecie",
+                    "IsStreetSeparationPresent": "true",
+                    "IsStreetTerytCodeAvailable": "true",
+                    "PostalCode": "34-623",
+                    "StreetName": "Podgórna",
+                    "BuildingNumber": "483",
+                    "ApartmentNumber": "118",
+                    "Teryt": "20201"
+                },
+                "KseUserData_Additional": {
+                    "DsoEmailAddress": "ewelina98@example.org",
+                    "DsoPhoneNumber": "+48167887896"
+                }
+            },
+            "KseUserData_Primary": [
+                {
+                    "KseUserType": "CK0803",
+                    "CompanyName": "Spółdzielnia Ruszczak Sp.j.",
+                    "KseUserData_Identifiers": {
+                        "Nip": "2158787456",
+                        "Krs": "9595431733"
+                    }
+                }
+            ]
+        }
+    }
+}

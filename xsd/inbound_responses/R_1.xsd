@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bdt="urn:pl:oire:businessDataTypes:v1" xmlns:msg_R_1="urn:pl:oire:message_R_1:v1" xmlns:tech="urn:pl:oire:technical:v1" elementFormDefault="qualified" targetNamespace="urn:pl:oire:message_R_1:v1">
+    
+    <!-- ====================================================================================================================================================== -->
+    <!-- ==== Wersja przedprodukcyjna z 16.12.2024                                                                                                         ==== -->
+    <!-- ====================================================================================================================================================== -->
+    
+    <!-- ====================================================================================================================================================== -->
+    <!-- ==== Import                                                                                                                                       ==== -->
+    <!-- ====================================================================================================================================================== -->
+    <xs:import namespace="urn:pl:oire:businessDataTypes:v1" schemaLocation="../businessDataTypes.xsd"/>
+    <xs:import namespace="urn:pl:oire:technical:v1" schemaLocation="../technical.xsd"/>
+    
+    <!-- ====================================================================================================================================================== -->
+    <!-- ==== R_1 Rezultat operacji                                                                                                                        ==== -->
+    <!-- ====================================================================================================================================================== -->
+    <xs:element name="OperationResult" type="msg_R_1:OperationResult"/>
+    <xs:complexType name="OperationResult">
+        <xs:annotation>
+            <xs:appinfo>
+                <msg_R_1:plName>R_1 Rezultat operacji</msg_R_1:plName>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <!-- Nagłówek -->
+            <xs:element name="Header" type="tech:Header" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <msg_R_1:plName>Nagłówek</msg_R_1:plName>
+                        <msg_R_1:code>PL-700</msg_R_1:code>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Kontekst -->
+            <xs:element name="ProcessEnergyContext" type="tech:ProcessEnergyContext" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <msg_R_1:plName>Kontekst</msg_R_1:plName>
+                        <msg_R_1:code>PL-715</msg_R_1:code>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- R_1 Payload Rezultat operacji -->
+            <xs:element name="Payload" type="msg_R_1:OperationResultPayload" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <msg_R_1:plName>R_1 Payload Rezultat operacji</msg_R_1:plName>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- ====================================================================================================================================================== -->
+    <!-- ==== R_1 Payload Rezultat operacji                                                                                                                ==== -->
+    <!-- ====================================================================================================================================================== -->
+    <xs:element name="OperationResultPayload" type="msg_R_1:OperationResultPayload"/>
+    <xs:complexType name="OperationResultPayload">
+        <xs:annotation>
+            <xs:appinfo>
+                <msg_R_1:plName>R_1 Payload Rezultat operacji</msg_R_1:plName>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <!-- Dane PP - ogólne -->
+            <xs:element name="MeteringPointData_Basic" type="msg_R_1:MeteringPointData_Basic" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <msg_R_1:plName>Dane PP - ogólne</msg_R_1:plName>
+                        <msg_R_1:code>PL-300</msg_R_1:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Sekcja 1.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Dane obiektu - ogólne -->
+            <xs:element name="FacilityData_Basic" type="msg_R_1:FacilityData_Basic" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <msg_R_1:plName>Dane obiektu - ogólne</msg_R_1:plName>
+                        <msg_R_1:code>PL-425</msg_R_1:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Sekcja 2.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Status realizacji żądania -->
+            <xs:element name="Result" type="msg_R_1:Result" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <msg_R_1:plName>Status realizacji żądania</msg_R_1:plName>
+                        <msg_R_1:code>PL-144</msg_R_1:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Sekcja 3.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- ====================================================================================================================================================== -->
+    <!-- ==== Dane PP - ogólne                                                                                                                             ==== -->
+    <!-- ====================================================================================================================================================== -->
+    <xs:element name="MeteringPointData_Basic" type="msg_R_1:MeteringPointData_Basic"/>
+    <xs:complexType name="MeteringPointData_Basic">
+        <xs:annotation>
+            <xs:appinfo>
+                <msg_R_1:plName>Dane PP - ogólne</msg_R_1:plName>
+                <msg_R_1:code>PL-300</msg_R_1:code>
+            </xs:appinfo>
+            <xs:documentation xml:lang="pl">Sekcja 1.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <!-- Kod PP -->
+            <xs:element name="MeteringPointCode" type="bdt:MeteringPointCodeType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <msg_R_1:plName>Kod PP</msg_R_1:plName>
+                        <msg_R_1:code>PL-001</msg_R_1:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod identyfikujący Punkt pomiarowy - zgodny ze standardem GS1.</xs:documentation>
+                    <xs:documentation xml:lang="en">Metering Point Identification Code - compliant with the GS1 standard.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- ====================================================================================================================================================== -->
+    <!-- ==== Dane obiektu - ogólne                                                                                                                        ==== -->
+    <!-- ====================================================================================================================================================== -->
+    <xs:element name="FacilityData_Basic" type="msg_R_1:FacilityData_Basic"/>
+    <xs:complexType name="FacilityData_Basic">
+        <xs:annotation>
+            <xs:appinfo>
+                <msg_R_1:plName>Dane obiektu - ogólne</msg_R_1:plName>
+                <msg_R_1:code>PL-425</msg_R_1:code>
+            </xs:appinfo>
+            <xs:documentation xml:lang="pl">Sekcja 2.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <!-- Identyfikator obiektu -->
+            <xs:element name="FacilityIdentifier" type="bdt:FacilityIdentifierType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <msg_R_1:plName>Identyfikator obiektu</msg_R_1:plName>
+                        <msg_R_1:code>PL-424</msg_R_1:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Unikalny kod identyfikujący obiekt pomiarowy. Struktura Identyfikatora obiektu składa się z:
+1) kodu EIC (np. 19X000000000001C),
+2) oznaczenia przedmiotu identyfikacji (OP - obiektu pomiarowego),
+3) unikalnego dopełnienia nadawanego przez Operatora (np. 11111111).</xs:documentation>
+                    <xs:documentation xml:lang="en">Unique code identifying the metering facility. The structure of the facility Identifier consists of:
+1) EIC code (e.g. 19X000000000001C),
+2) designation of the facility of identification (OP - measurement facility),
+3) a unique complement assigned by the Operator (e.g. 11111111).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- ====================================================================================================================================================== -->
+    <!-- ==== Status realizacji żądania                                                                                                                    ==== -->
+    <!-- ====================================================================================================================================================== -->
+    <xs:element name="Result" type="msg_R_1:Result"/>
+    <xs:complexType name="Result">
+        <xs:annotation>
+            <xs:appinfo>
+                <msg_R_1:plName>Status realizacji żądania</msg_R_1:plName>
+                <msg_R_1:code>PL-144</msg_R_1:code>
+            </xs:appinfo>
+            <xs:documentation xml:lang="pl">Sekcja 3.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <!-- ID_instancji_procesu_referencyjnego -->
+            <xs:element name="ProcessInstanceId" type="bdt:UuidType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <msg_R_1:plName>ID_instancji_procesu_referencyjnego</msg_R_1:plName>
+                        <msg_R_1:code>PL-002</msg_R_1:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Unikatowy kod instancji procesu referencyjnego komunikatu, nadawany przez CSIRE.</xs:documentation>
+                    <xs:documentation xml:lang="en">The unique process instance code of the message reference process, assigned by CSIRE.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Kod rezultatu -->
+            <xs:element name="ResultCode" type="bdt:String10_Type" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <msg_R_1:plName>Kod rezultatu</msg_R_1:plName>
+                        <msg_R_1:code>PL-138</msg_R_1:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Kod rezultatu specyfikuje wynik operacji (w szczególności sukces - CA*)
+Lista rezultatów zamieszczona w Załączniku 8 do TSKB.</xs:documentation>
+                    <xs:documentation xml:lang="en">The result code specifies the result of the operation (in particular success - CA*).
+Result code list is described in Appendix 8 to TSKB.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Opis rezultatu -->
+            <xs:element name="ResultDescription" type="bdt:String2000_Type" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <msg_R_1:plName>Opis rezultatu</msg_R_1:plName>
+                        <msg_R_1:code>PL-498</msg_R_1:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Zawiera dodatkowe informacje na temat błędu</xs:documentation>
+                    <xs:documentation xml:lang="en">Includes additional information on the error</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <!-- Scenariusz macierzy priorytetyzacji -->
+            <xs:element name="PriorityMatrixScenario" type="bdt:PriorityMatrixScenarioType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <msg_R_1:plName>Scenariusz macierzy priorytetyzacji</msg_R_1:plName>
+                        <msg_R_1:code>PL-502</msg_R_1:code>
+                    </xs:appinfo>
+                    <xs:documentation xml:lang="pl">Doprecyzowanie, który scenariusz Macierzy priorytetyzacji spowodował odrzucenie komunikatu.</xs:documentation>
+                    <xs:documentation xml:lang="en">Clarification of which Prioritization Matrix scenario caused the message to be rejected.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

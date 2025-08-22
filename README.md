@@ -64,7 +64,7 @@ Jest to prosty format przeznaczony do ręcznego tworzenia lub prostych integracj
 }
 ```
 
-#### Format 2: Koperta LUXhub
+#### Format 2: Koperta
 Format ten jest przeznaczony do testowania scenariuszy, w których komunikaty są opakowane w standardową "kopertę" systemową.
 
 *   `payload`: (string) Cały komunikat XML, na który chcesz odpowiedzieć, zakodowany w **Base64**. Aplikacja automatycznie zdekoduje treść i wyodrębni z niej `MessageId`, `BusinessProcess` oraz `MeteringPointCode`.
